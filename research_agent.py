@@ -2,12 +2,16 @@ from datetime import date
 
 from crewai import LLM, Agent, Crew, Process, Task
 
+from compat import apply_patches
 from search_tool import DuckDuckGoSearchTool
 
 MODEL_NAME = "groq/openai/gpt-oss-120b"
 
 
 def run_research(topic: str, api_key: str) -> str:
+    # Fixes the Groq "cache_breakpoint is unsupported" error (see compat.py)
+    apply_patches()
+
     # --- LLM ---
     llm = LLM(
         model=MODEL_NAME,
