@@ -1,0 +1,3 @@
+streamlit>=1.40
+crewai[litellm]>=1.15,<2
+ddgs
